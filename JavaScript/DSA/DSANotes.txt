@@ -1,0 +1,11 @@
+NOTES:-
+
+** Palindrome 
+An interger is a Palindrome when it reads the same from forward or backward
+
+Ex:-  Input : x = 121    ------>>>>  output = true
+
+Ex:-  Input : x = 10     ------>>>>  output = False
+
+
+ 

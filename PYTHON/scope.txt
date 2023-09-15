@@ -1,0 +1,132 @@
+In Python, there are several types of namespaces that are used to organize objects and prevent name conflicts. Here is a list of the different types of namespaces in Python, along with examples of each:
+Built-in namespace: 
+=================== 
+This namespace contains objects that are built into Python, such as the built-in functions and exception classes. For example, the abs function and the Exception class are both part of the built-in namespace.
+EX:-
+# Built-in namespace
+print(abs(-10))  # prints the absolute value of -10 using the built-in function "abs"
+
+Global namespace:
+================
+This namespace contains objects that are defined at the top level of a module or script. For example, variables and functions defined at the top level of a module are part of the global namespace.
+EX:-
+# Global namespace
+x = 10  # creates a global variable named "x"
+Local namespace: 
+================
+This namespace is created whenever a function is called, and it contains objects that are defined within the function. For example, variables and functions defined within a function are part of the local namespace for that function. The local namespace is specific to the function call, and it is destroyed when the function returns.
+EX:-
+def foo():
+    # Local namespace ---------->>>>  commands 
+    y = 20  # creates a local variable named "y"
+    print(y)  # prints the value of the local variable "y"
+
+foo()
+
+Module namespace:
+=================
+ This namespace contains objects that are defined within a module. For example, variables, functions, and classes defined within a module are part of the module namespace for that module.
+EX:-
+# Module namespace ---------->>>>  commands 
+import math
+print(math.pi)  # prints the value of pi from the "math" module
+
+Class namespace:
+================
+This namespace contains objects that are defined within a class. For example, methods and attributes defined within a class are part of the class namespace for that class.
+EX:-
+class MyClass:
+    # Class namespace ---------->>>>  commands 
+    z = 30  # creates a class attribute named "z"
+obj = MyClass()
+print(obj.z)  # prints the value of the class attribute "z"
+
+
+Here is an example of code that illustrates the different types of namespaces in Python:
+
+In this example, the built-in function abs is called from the built-in namespace. 
+The global variable x is created in the global namespace, and the local variable y is created in the local namespace within the function foo. 
+The module math is imported, and the constant pi is accessed from the module namespace. Finally, the class MyClass is defined, and a class attribute z is created in the class namespace.
+ An object of the class MyClass is created, and the value of the class attribute z is accessed from the object's namespace.
+Python itself maintains a namespace in the form of a Python dictionary. Any variable name can be thought of a composition of "object_name" + "scope", here variable name refers to a unique identifier and scope is defined on the basis of namespace.
+Note: The same variable name can be present in different namespaces (except for the variables / object identifiers defined as part of built-in namespace), just like same file name can be found across different directories. Depending upon the "variable / object_name" and "namespace" combination detected at compile time, python interpreter identifies the uniqueness of objects across namespaces.
+
+Different Types of Scopes in Python:
+=====================================
+In Python, the built-in scope refers to the region of a program where the built-in functions and variables are recognized and can be accessed.
+
+Built-in Scope:
+===============
+The built-in functions and variables are defined by the Python interpreter and are always available for use in your code. They include functions like print(), len(), and range(), as well as variables like True, False, and None. Here is an example of how to access built-in functions and variables in Python:
+print(len('hello'))  # prints 5
+print(range(5))  # prints [0, 1, 2, 3, 4]
+print(True)  # prints True
+print(None)  # prints None
+Note: It is not possible to reassign or delete built-in functions or variables in Python. Attempting to do so will result in a SyntaxError.
+len = 5  # this will cause a SyntaxError because len is a built-in function and cannot be reassigned
+del True  # this will cause a SyntaxError because True is a built-in variable and cannot be deleted
+To avoid this error, you should choose a different name for your variable that is not already used by a built-in function or variable in Python.
+You can find a list of all the built-in functions and variables in Python in the documentation: https://docs.python.org/3/library/functions.html
+Note: Built-in scope is given the highest precedence however no other namespace can have same object identifiers as of built-in namespace.
+=========================================================================================================================================================================================
+Global Scope: A global scope refers to the region of a program where a variable is defined and can be accessed from anywhere in the code. Here is an example of how to create and access a global variable in Python:
+x = 10  # x is a global variable
+
+def foo():
+  print(x)  # we can access the global variable x inside the function
+
+foo()
+print(x)  # we can also access the global variable x outside the function
+===========================================================================================================================================================================================
+Local Scope: A local scope refers to the region of a program where a variable is defined and can only be accessed within that region. 
+Local scopes can be created within functions or within class methods. Here is an example of how to create and access a local variable in Python:
+
+def foo():
+  x = 5  # x is a local variable
+  print(x)  # we can access the local variable x inside the function
+
+foo()
+print(x)  # this will cause an error because x is a local variable and is not defined outside the function
+============================================================================================================================================================================================
+Nested / Enclosed Scope: There is also a third type of scope in Python called a nested scope, which refers to a local scope within another local scope. 
+Nested scopes are created when one function is defined inside another function. Here is an example of a nested scope in Python:
+
+def outer():
+  x = 10  # x is a local variable in the outer function
+  
+  def inner():
+    y = 5  # y is a local variable in the inner function
+    print(x)  # we can access the outer variable x from within the inner function
+    print(y)  # we can access the inner variable y from within the inner function
+  
+  inner()
+  print(x)  # we can also access the outer variable x from outside the inner function
+  print(y)  # this will cause an error because y is a local variable in the inner function and is not defined outside the inner function
+
+outer()
+============================================================================================================================================================================================
+
+In Python, the scope of a variable is determined by the location of the variable's declaration in your code. The basic rule is that a variable is only available to be used within the code block in which it is declared. Code blocks are denoted by indentation level.
+No alt text provided for this image
+Image Source: realpython
+Python follows a specific order of precedence when it comes to determining the scope of a variable. When you use a variable in your code, Python will first look for a variable with that name in the local scope. If it doesn't find one, it will then look in any enclosing scopes. If it still doesn't find a match, it will look in the global scope. If it can't find the variable anywhere else then the interpreter tries to find it in the built-in scope. If it still doesn't find a match, it will raise a NameError exception. Here's an example to illustrate this:
+x = 10  # x is in global scope
+
+def outer_function():
+    y = 5  # y is in the local scope of outer_function
+    
+    def inner_function():
+        z = 1  # z is in the local scope of inner_function
+        print(x)  # prints 10 (x is in the global scope)
+        print(y)  # prints 5 (y is in the enclosing scope of inner_function)
+        print(z)  # prints 1 (z is in the local scope of inner_function)
+    
+    inner_function()
+    print(x)  # prints 10 (x is in the global scope)
+    print(y)  # prints 5 (y is in the local scope of outer_function)
+    print(z)  # raises NameError (z is not in the local scope of outer_function)
+
+outer_function()
+print(x)  # prints 10 (x is in the global scope)
+print(y)  # raises NameError (y is not in the global scope)
+print(z)  # raises NameError (z is not in the global scope)
