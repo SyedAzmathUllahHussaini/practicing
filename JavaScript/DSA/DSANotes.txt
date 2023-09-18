@@ -7,5 +7,9 @@ Ex:-  Input : x = 121    ------>>>>  output = true
 
 Ex:-  Input : x = 10     ------>>>>  output = False
 
+Note :
+Array.from()
+converts obeject into an Array
+
 
  
